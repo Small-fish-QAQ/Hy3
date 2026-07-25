@@ -29,19 +29,24 @@ Each guide preserves the issue-required workflow: installation and tested snapsh
 
 ## Part B: Codex + Hy3 evidence-grounded spec diff reviewer
 
-The reusable review engine is a standalone CLI. For issue #2, its primary documented workflow is invoked from Codex CLI after a developer stages a change.
+The standalone reviewer supports both report-oriented CLI use and a loopback-only staged-browser workflow. The recommended workflow is launched from the Git repository being reviewed: after a one-time `npm ci` and `npm link` in the reviewer checkout, `hy3-review-staged --spec examples/spec.md` treats the current Git repository as the repository being reviewed, reads the explicitly selected specification and the repository's staged Git diff, starts the local browser console, automatically preloads the Specification and Unified Diff inputs, and selects Live / Hy3 for the real workflow. Offline / Fake remains an explicit deterministic reproduction path.
 
-Codex modifies code; the human chooses and stages the intended diff; the repository workflow invokes Hy3; local code validates the structured result and every cited spec/diff location; then Markdown and JSON are published with input hashes and execution provenance. The result is advisory and never edits code or Git state.
+Codex or another developer tool may modify code, but the human still chooses and stages the intended diff. Hy3 performs the semantic review; local code validates the structured result and every cited specification and diff location; Markdown and JSON reports include input hashes and execution provenance. The reviewer does not edit code, stage files, commit, reset, or otherwise mutate Git state.
 
 - Repository: [hy3-tokenhub-spec-diff-reviewer](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer)
-- Credential-free demo: `npm ci && npm run demo:offline` (always labelled `OFFLINE / FAKE`)
+- Current 41-second Live / Hy3 staged-browser demo: [codex-hy3-staged-browser-live-demo.mp4](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/assets/browser/codex-hy3-staged-browser-live-demo.mp4)
+- Current 1440×900 browser preview: [review-console-1440x900.png](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/assets/browser/review-console-1440x900.png)
+- One-time local setup in the reviewer checkout: `npm ci`, then `npm link`
+- Recommended staged-browser command, run from the repository being reviewed: `hy3-review-staged --spec examples/spec.md`
+- Direct CLI report command: `npm run review:staged -- --spec examples/spec.md --output reports/review.md`
+- Deterministic browser reproduction: `npm run serve`, then Load sample → Offline / Fake → Start review
 - Live preflight: `npm run check`
-- Canonical Codex/staged command: `npm run review:staged -- --spec examples/spec.md --output reports/review.md`
-- Browser console: `npm run serve`
-- Architecture and Codex boundary: [Codex workflow guide](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/CODEX_WORKFLOW.md)
-- Sanitized bounded live check: [2026-07-22 verification record](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/evidence/live-verification-2026-07-22.md)
-- Existing ≤60-second evidence: [31-second live CLI-core recording, pinned to the historical implementation](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/fecbbc49a4e3c21f2fe78b9ab3bcc9ee24ec156f/docs/assets/hy3-spec-to-diff-demo.mp4)
+- Codex workflow guide: [docs/CODEX_WORKFLOW.md](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/CODEX_WORKFLOW.md)
+- Sanitized 2026-07-22 live verification record: [docs/evidence/live-verification-2026-07-22.md](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/evidence/live-verification-2026-07-22.md)
+- Historical 31-second CLI-core recording, earlier-revision evidence only: [hy3-spec-to-diff-demo.mp4](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/fecbbc49a4e3c21f2fe78b9ab3bcc9ee24ec156f/docs/assets/hy3-spec-to-diff-demo.mp4)
 
-The current implementation adds a fixed JSON contract, one bounded repair attempt, locally verified evidence, official `GET /v1/models` preflight, bounded retry/backoff, deterministic offline fixtures/evaluation, provenance, and a thin local browser console. The pinned 31-second recording remains real live evidence for the CLI core but predates those additions; refreshed 50–55 second media must be recorded manually rather than simulated.
+The current video, approximately 42 seconds long, demonstrates the workflow on a staged Git change: automatically populated browser inputs, a Live / Hy3 semantic review returning a NOT READY verdict, requirement-level coverage, verified specification and diff citations, multiple implementation and test findings including missing boundary and invalid-input tests, Live / Hy3 execution provenance with local schema validation and local evidence validation passed, and Markdown and JSON export controls. Live model output can vary between runs, so coverage counts, finding counts, and severity mix are not fixed claims.
 
-Limitations: local citation validation proves that quoted locations exist, not that a model conclusion is semantically correct. Prompt-injection risk is reduced, not eliminated. Live behavior still depends on TokenHub availability, model access, and the selected regional endpoint.
+The historical 31-second MP4 remains real TokenHub evidence, but it shows an earlier CLI revision recorded before the staged-browser workflow, the fixed structured schema, local evidence verification, and the current browser report and export workflow. It must not be presented as the current product demo.
+
+Limitations: local citation validation proves that quoted locations exist, not that every model conclusion is semantically correct. Prompt-injection risk is reduced, not eliminated. The specification and staged diff are supplied as review inputs and must not contain secrets. Live behavior depends on TokenHub availability, model access, credentials, and the selected regional endpoint.
