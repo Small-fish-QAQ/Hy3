@@ -31,6 +31,44 @@ const requiredPatterns = new Map([
 const errors = [];
 let checkedLinks = 0;
 
+function isObject(value) {
+  return Boolean(value) && typeof value === 'object' && !Array.isArray(value);
+}
+
+function readEvidenceManifest() {
+  const manifestPath = path.join(root, 'evidence-manifest.json');
+  try {
+    return JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  } catch (error) {
+    errors.push(`evidence-manifest.json: unable to read or parse manifest: ${error.message}`);
+    return null;
+  }
+}
+
+function passingMarker(record, field) {
+  if (!isObject(record)) {
+    errors.push(`evidence-manifest.json: ${field} must be an object`);
+    return null;
+  }
+  let valid = true;
+  for (const countField of ['passed', 'total']) {
+    if (!Number.isInteger(record[countField]) || record[countField] <= 0) {
+      errors.push(
+        `evidence-manifest.json: ${field}.${countField} must be a positive integer`
+      );
+      valid = false;
+    }
+  }
+  if (!valid) return null;
+  if (record.passed !== record.total) {
+    errors.push(
+      `evidence-manifest.json: ${field} must record a fully passing result; found ${record.passed}/${record.total}`
+    );
+    return null;
+  }
+  return `${record.passed}/${record.total}`;
+}
+
 for (const guideName of guides) {
   const guidePath = path.join(root, guideName);
   if (!fs.existsSync(guidePath)) {
@@ -71,15 +109,53 @@ for (const documentName of markdownFiles) {
 }
 
 const index = fs.readFileSync(path.join(root, 'README.md'), 'utf8');
+const manifest = readEvidenceManifest();
+let testMarker = null;
+let deterministicMarker = null;
+if (manifest !== null) {
+  if (!isObject(manifest.part_b)) {
+    errors.push('evidence-manifest.json: $.part_b must be an object');
+  } else {
+    testMarker = passingMarker(manifest.part_b.tests, '$.part_b.tests');
+    deterministicMarker = passingMarker(
+      manifest.part_b.deterministic_evaluation,
+      '$.part_b.deterministic_evaluation'
+    );
+  }
+}
+
 for (const required of [
+  '## Fast Reviewer Path',
   '## Part A: integration verification matrix',
   '## Part B: Codex + Hy3 evidence-grounded spec diff reviewer',
-  'npm run demo:offline',
+  'acceptance-matrix.md',
+  'evidence-manifest.json',
+  'media-integrity.json',
+  'node docs/integrations/verify_evidence.js',
   'npm run review:staged',
   'npm run check',
-  'OFFLINE / FAKE'
+  'Offline / Fake'
 ]) {
   if (!index.includes(required)) errors.push(`README.md: missing Part A/B index marker: ${required}`);
+}
+for (const [label, marker] of [
+  ['Part B Node test result', testMarker],
+  ['Part B deterministic evaluation result', deterministicMarker]
+]) {
+  if (marker !== null && !index.includes(marker)) {
+    errors.push(`README.md: missing ${label} from evidence-manifest.json: ${marker}`);
+  }
+}
+for (const staleMarker of [
+  '192/192',
+  '207/207',
+  '229/229',
+  '230/230',
+  '234/234'
+]) {
+  if (index.includes(staleMarker)) {
+    errors.push(`README.md: contains stale current Part B test marker: ${staleMarker}`);
+  }
 }
 
 if (errors.length > 0) {

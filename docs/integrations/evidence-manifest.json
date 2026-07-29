@@ -1,0 +1,714 @@
+{
+  "schema_version": "1.0.0",
+  "status_vocabulary": [
+    "live_verified",
+    "offline_verified",
+    "documented_not_executed",
+    "configuration_only",
+    "not_applicable",
+    "unknown"
+  ],
+  "status_definitions": {
+    "live_verified": "Existing repository evidence records an executed Hy3 provider workflow.",
+    "offline_verified": "A deterministic local workflow was executed without a provider request.",
+    "documented_not_executed": "Instructions exist, but this variant was not executed for this delivery.",
+    "configuration_only": "Evidence establishes configuration or local structure, not a completed provider task.",
+    "not_applicable": "The field or verification mode does not apply.",
+    "unknown": "The repository evidence does not support a value."
+  },
+  "issue": {
+    "url": "https://github.com/Tencent-Hunyuan/Hy3/issues/2",
+    "target_branch": "rhinobird2026",
+    "required_directory": "docs/integrations/",
+    "minimum_tools": 5,
+    "hard_requirements": [
+      "At least five tool guides, each covering configuration, first conversation, and a real task.",
+      "Each guide includes installation and version requirements.",
+      "Each guide documents Base URL, model, authentication, and protocol selection.",
+      "Each guide includes an end-to-end screenshot or GIF and common configuration notes.",
+      "Part A is delivered under docs/integrations/ with an index and evidence media.",
+      "Part B is an independent open-source repository with a README and a demo using at least one Hy3 core capability.",
+      "The Part B demo video or GIF does not exceed 60 seconds."
+    ]
+  },
+  "integration_index": "docs/integrations/README.md",
+  "acceptance_matrix": "docs/integrations/acceptance-matrix.md",
+  "media_integrity_manifest": "docs/integrations/media-integrity.json",
+  "integrations": [
+    {
+      "tool_slug": "aider",
+      "display_name": "Aider CLI",
+      "category": "CLI coding agent",
+      "guide_path": "docs/integrations/aider.md",
+      "version": {
+        "tested_snapshot": "0.86.2",
+        "claim_scope": "exact observed snapshot, not a minimum supported version"
+      },
+      "tested_environment": {
+        "status": "live_verified",
+        "details": [
+          "Windows 11 25H2 (build 26200)",
+          "PowerShell"
+        ]
+      },
+      "endpoint": {
+        "provider": "Tencent Cloud TokenHub",
+        "region": "Guangzhou / China mainland",
+        "base_url": "https://tokenhub.tencentmaas.com/v1"
+      },
+      "model": "hy3",
+      "protocol": "OpenAI-compatible Chat Completions",
+      "authentication": {
+        "method": "Bearer API key through Aider's OpenAI-compatible environment variables",
+        "secret_source": "OPENAI_API_KEY environment variable; value not retained"
+      },
+      "first_conversation": {
+        "status": "live_verified",
+        "evidence_paths": [
+          "docs/integrations/assets/aider/aider-first-chat-tokenhub.png"
+        ]
+      },
+      "real_task": {
+        "status": "live_verified",
+        "description": "Read README.md without editing and summarize the Model Introduction in three concise bullets.",
+        "evidence_paths": [
+          "docs/integrations/assets/aider/aider-readme-demo-tokenhub.png"
+        ]
+      },
+      "overall_verification_status": "live_verified",
+      "verification_scope": "Existing manual TokenHub execution plus visible client-result screenshots; no endpoint-level request transcript.",
+      "limitations": [
+        "A repository map was generated, so strict single-file repository isolation was not established.",
+        "Dedicated streaming and general protocol-level tool-calling behavior were not tested."
+      ],
+      "unverified_variants": [
+        {
+          "name": "local self-hosted endpoint",
+          "status": "documented_not_executed"
+        },
+        {
+          "name": "Singapore / global TokenHub endpoint",
+          "status": "documented_not_executed"
+        }
+      ],
+      "verification_date": "2026-07-09",
+      "notes": [
+        "The screenshot shows the client result; it does not independently prove host, request body, or authentication."
+      ]
+    },
+    {
+      "tool_slug": "cline",
+      "display_name": "Cline",
+      "category": "VS Code extension",
+      "guide_path": "docs/integrations/cline.md",
+      "version": {
+        "tested_snapshot": "4.0.6",
+        "claim_scope": "exact observed snapshot, not a minimum supported version"
+      },
+      "tested_environment": {
+        "status": "live_verified",
+        "details": [
+          "Windows 11 25H2 (build 26200)",
+          "Visual Studio Code"
+        ]
+      },
+      "endpoint": {
+        "provider": "Tencent Cloud TokenHub",
+        "region": "Guangzhou / China mainland",
+        "base_url": "https://tokenhub.tencentmaas.com/v1"
+      },
+      "model": "hy3",
+      "protocol": "OpenAI-compatible Chat Completions",
+      "authentication": {
+        "method": "User-entered API key in the OpenAI Compatible provider configuration",
+        "secret_source": "Cline provider secret field; value not retained"
+      },
+      "first_conversation": {
+        "status": "live_verified",
+        "evidence_paths": [
+          "docs/integrations/assets/cline/cline-first-chat-tokenhub.png"
+        ]
+      },
+      "real_task": {
+        "status": "live_verified",
+        "description": "Read the workspace README and produce the requested Hy3 summary without editing files.",
+        "evidence_paths": [
+          "docs/integrations/assets/cline/cline-readme-demo-tokenhub.png"
+        ]
+      },
+      "overall_verification_status": "live_verified",
+      "verification_scope": "Existing manual TokenHub execution plus a visible first response and workspace-reading result.",
+      "limitations": [
+        "The file-reading task does not establish compatibility for every OpenAI-protocol tool call.",
+        "Exact secret-storage behavior and advanced options were outside the test scope."
+      ],
+      "unverified_variants": [
+        {
+          "name": "local self-hosted endpoint",
+          "status": "documented_not_executed"
+        },
+        {
+          "name": "Singapore / global TokenHub endpoint",
+          "status": "documented_not_executed"
+        }
+      ],
+      "verification_date": "2026-07-08",
+      "notes": [
+        "The screenshot shows the client result; it is not an endpoint transcript."
+      ]
+    },
+    {
+      "tool_slug": "codex-cli",
+      "display_name": "OpenAI Codex CLI",
+      "category": "CLI coding agent",
+      "guide_path": "docs/integrations/codex-cli.md",
+      "version": {
+        "tested_snapshot": "0.142.5",
+        "compatibility_check": "0.144.1",
+        "claim_scope": "primary screenshots use 0.142.5; 0.144.1 was a later compatibility check"
+      },
+      "tested_environment": {
+        "status": "live_verified",
+        "details": [
+          "Windows 11 25H2 (build 26200)",
+          "PowerShell"
+        ]
+      },
+      "endpoint": {
+        "provider": "Tencent Cloud TokenHub",
+        "region": "Guangzhou / China mainland",
+        "base_url": "https://tokenhub.tencentmaas.com/v1"
+      },
+      "model": "hy3",
+      "protocol": "OpenAI Responses API through a Codex CLI custom provider profile",
+      "authentication": {
+        "method": "Environment-key reference in the custom provider profile",
+        "secret_source": "TOKENHUB_API_KEY environment variable; value not retained"
+      },
+      "first_conversation": {
+        "status": "live_verified",
+        "evidence_paths": [
+          "docs/integrations/assets/codex-cli/codex-cli-interactive-first-chat-tokenhub.png",
+          "docs/integrations/assets/codex-cli/codex-cli-exec-first-chat-tokenhub.png"
+        ]
+      },
+      "real_task": {
+        "status": "live_verified",
+        "description": "Interactive and exec modes read the Model Introduction and returned concise three-bullet summaries without editing files.",
+        "evidence_paths": [
+          "docs/integrations/assets/codex-cli/codex-cli-interactive-readme-demo-tokenhub.png",
+          "docs/integrations/assets/codex-cli/codex-cli-exec-readme-demo-tokenhub.png"
+        ]
+      },
+      "overall_verification_status": "live_verified",
+      "verification_scope": "Existing manual TokenHub runs visibly completed in both interactive and exec modes through the Responses profile.",
+      "limitations": [
+        "Model-list metadata and stream-delta warnings were visible in the later compatibility check.",
+        "Dedicated streaming and tool-calling tasks were not independently tested."
+      ],
+      "unverified_variants": [
+        {
+          "name": "direct local Chat-Completions-only endpoint compatibility",
+          "status": "documented_not_executed"
+        },
+        {
+          "name": "Singapore / global TokenHub endpoint",
+          "status": "documented_not_executed"
+        }
+      ],
+      "verification_date": "2026-07-09",
+      "notes": [
+        "No separate date is asserted for the 0.144.1 compatibility check."
+      ]
+    },
+    {
+      "tool_slug": "continue",
+      "display_name": "Continue",
+      "category": "VS Code extension",
+      "guide_path": "docs/integrations/continue.md",
+      "version": {
+        "tested_snapshot": "2.0.0",
+        "claim_scope": "exact observed snapshot, not a minimum supported version"
+      },
+      "tested_environment": {
+        "status": "live_verified",
+        "details": [
+          "Windows 11 25H2 (build 26200)",
+          "Visual Studio Code"
+        ]
+      },
+      "endpoint": {
+        "provider": "Tencent Cloud TokenHub",
+        "region": "Guangzhou / China mainland",
+        "base_url": "https://tokenhub.tencentmaas.com/v1"
+      },
+      "model": "hy3",
+      "protocol": "OpenAI-compatible Chat Completions",
+      "authentication": {
+        "method": "Continue secret reference in configuration",
+        "secret_source": "TOKENHUB_API_KEY in Continue's user-level environment file; value not retained"
+      },
+      "first_conversation": {
+        "status": "live_verified",
+        "evidence_paths": [
+          "docs/integrations/assets/continue/continue-first-chat-tokenhub.png"
+        ]
+      },
+      "real_task": {
+        "status": "live_verified",
+        "description": "Read the workspace README and summarize the Model Introduction without editing files.",
+        "evidence_paths": [
+          "docs/integrations/assets/continue/continue-readme-demo-tokenhub.png"
+        ]
+      },
+      "overall_verification_status": "live_verified",
+      "verification_scope": "Existing manual TokenHub execution plus visible first-response and workspace-reading evidence.",
+      "limitations": [
+        "A full Visual Studio Code restart was required after secret changes.",
+        "Dedicated streaming and general protocol-level tool-calling behavior were not independently tested."
+      ],
+      "unverified_variants": [
+        {
+          "name": "local self-hosted endpoint",
+          "status": "documented_not_executed"
+        },
+        {
+          "name": "Singapore / global TokenHub endpoint",
+          "status": "documented_not_executed"
+        }
+      ],
+      "verification_date": "2026-07-08",
+      "notes": [
+        "Secret-reference compatibility was separately checked on 2026-07-10."
+      ]
+    },
+    {
+      "tool_slug": "dify",
+      "display_name": "Dify Cloud",
+      "category": "Cloud workflow platform",
+      "guide_path": "docs/integrations/dify.md",
+      "version": {
+        "tested_snapshot": "OpenAI-API-compatible provider 0.0.55",
+        "claim_scope": "provider snapshot shown in the tested Dify Cloud UI"
+      },
+      "tested_environment": {
+        "status": "unknown",
+        "details": [
+          "Dify Cloud workspace",
+          "Local operating system was not documented"
+        ]
+      },
+      "endpoint": {
+        "provider": "Tencent Cloud TokenHub",
+        "region": "Guangzhou / China mainland",
+        "base_url": "https://tokenhub.tencentmaas.com/v1"
+      },
+      "model": "hy3",
+      "protocol": "OpenAI-compatible Chat Completions",
+      "authentication": {
+        "method": "API key in the Dify OpenAI-compatible provider secret field",
+        "secret_source": "Dify provider configuration; value not retained"
+      },
+      "first_conversation": {
+        "status": "live_verified",
+        "evidence_paths": [
+          "docs/integrations/assets/dify/dify-first-chat-tokenhub.png"
+        ]
+      },
+      "real_task": {
+        "status": "live_verified",
+        "description": "Rewrite pasted README-derived text in a Dify Chatflow; no local repository access was used.",
+        "evidence_paths": [
+          "docs/integrations/assets/dify/dify-readme-excerpt-demo-tokenhub.png"
+        ]
+      },
+      "overall_verification_status": "live_verified",
+      "verification_scope": "Existing manual TokenHub workflow execution with pasted input and visible Dify output.",
+      "limitations": [
+        "Dify Cloud did not read a local repository; the task used pasted text.",
+        "Advanced capabilities, dedicated streaming, and tool calling were not tested."
+      ],
+      "unverified_variants": [
+        {
+          "name": "direct loopback local-server access from Dify Cloud",
+          "status": "not_applicable"
+        },
+        {
+          "name": "Singapore / global TokenHub endpoint",
+          "status": "documented_not_executed"
+        }
+      ],
+      "verification_date": "2026-07-10",
+      "notes": [
+        "The Dify provider version is not a claim about the Dify Cloud platform release."
+      ]
+    },
+    {
+      "tool_slug": "roo-code",
+      "display_name": "Roo Code",
+      "category": "VS Code extension",
+      "guide_path": "docs/integrations/roo-code.md",
+      "version": {
+        "tested_snapshot": "3.54.0",
+        "claim_scope": "exact observed snapshot, not a minimum supported version"
+      },
+      "tested_environment": {
+        "status": "live_verified",
+        "details": [
+          "Windows 11 25H2 (build 26200)",
+          "Visual Studio Code",
+          "Architect mode"
+        ]
+      },
+      "endpoint": {
+        "provider": "Tencent Cloud TokenHub",
+        "region": "Guangzhou / China mainland",
+        "base_url": "https://tokenhub.tencentmaas.com/v1"
+      },
+      "model": "hy3",
+      "protocol": "OpenAI-compatible Chat Completions",
+      "authentication": {
+        "method": "User-entered key in an OpenAI Compatible provider configuration",
+        "secret_source": "Roo Code provider configuration; value not retained"
+      },
+      "first_conversation": {
+        "status": "live_verified",
+        "evidence_paths": [
+          "docs/integrations/assets/roo-code/roo-code-first-chat-tokenhub.png"
+        ]
+      },
+      "real_task": {
+        "status": "live_verified",
+        "description": "Read README.md and return the requested three-bullet Model Introduction summary without editing files.",
+        "evidence_paths": [
+          "docs/integrations/assets/roo-code/roo-code-readme-demo-tokenhub.png"
+        ]
+      },
+      "overall_verification_status": "live_verified",
+      "verification_scope": "Existing manual TokenHub execution and visible completed client response; the screenshot crop is weaker evidence of the underlying file-read action than some other guides.",
+      "limitations": [
+        "General protocol-level tool calling and dedicated streaming were not independently tested.",
+        "Exact secret-storage behavior and advanced settings were outside scope."
+      ],
+      "unverified_variants": [
+        {
+          "name": "local self-hosted endpoint",
+          "status": "documented_not_executed"
+        },
+        {
+          "name": "Singapore / global TokenHub endpoint",
+          "status": "documented_not_executed"
+        }
+      ],
+      "verification_date": "2026-07-10",
+      "notes": [
+        "Hy3 TokenHub is a user-defined display label, not a provider identity."
+      ]
+    },
+    {
+      "tool_slug": "kilo-code",
+      "display_name": "Kilo Code",
+      "category": "VS Code extension",
+      "guide_path": "docs/integrations/kilo-code.md",
+      "version": {
+        "tested_snapshot": "7.4.1",
+        "claim_scope": "exact observed snapshot, not a minimum supported version"
+      },
+      "tested_environment": {
+        "status": "live_verified",
+        "details": [
+          "Windows 11 25H2 (build 26200)",
+          "Visual Studio Code"
+        ]
+      },
+      "endpoint": {
+        "provider": "Tencent Cloud TokenHub",
+        "region": "Guangzhou / China mainland",
+        "base_url": "https://tokenhub.tencentmaas.com/v1"
+      },
+      "model": "hy3",
+      "protocol": "OpenAI-compatible Chat Completions through a custom provider",
+      "authentication": {
+        "method": "User-entered key in the custom OpenAI-compatible provider",
+        "secret_source": "Kilo Code provider configuration; value not retained"
+      },
+      "first_conversation": {
+        "status": "live_verified",
+        "evidence_paths": [
+          "docs/integrations/assets/kilo-code/kilo-code-first-chat-tokenhub.png"
+        ]
+      },
+      "real_task": {
+        "status": "live_verified",
+        "description": "Read the workspace README and return the requested concise Model Introduction summary.",
+        "evidence_paths": [
+          "docs/integrations/assets/kilo-code/kilo-code-readme-demo-tokenhub.png"
+        ]
+      },
+      "overall_verification_status": "live_verified",
+      "verification_scope": "Existing manual execution through a TokenHub custom provider with visible first-response and workspace-reading evidence.",
+      "limitations": [
+        "Kilo Gateway and the built-in Tencent Hy3 FREE route were not tested.",
+        "Dedicated protocol-level tool calling and streaming were not independently tested."
+      ],
+      "unverified_variants": [
+        {
+          "name": "Kilo Gateway or built-in FREE route",
+          "status": "documented_not_executed"
+        },
+        {
+          "name": "local self-hosted endpoint",
+          "status": "documented_not_executed"
+        },
+        {
+          "name": "Singapore / global TokenHub endpoint",
+          "status": "documented_not_executed"
+        }
+      ],
+      "verification_date": "2026-07-08",
+      "notes": [
+        "Only the custom-provider path is within the verified scope."
+      ]
+    },
+    {
+      "tool_slug": "opencode",
+      "display_name": "OpenCode",
+      "category": "CLI/TUI coding agent",
+      "guide_path": "docs/integrations/opencode.md",
+      "version": {
+        "tested_snapshot": "1.17.15",
+        "claim_scope": "exact observed snapshot, not a minimum supported version"
+      },
+      "tested_environment": {
+        "status": "live_verified",
+        "details": [
+          "Windows 11 25H2 (build 26200)",
+          "Node.js 24.14.1",
+          "npm 11.11.0"
+        ]
+      },
+      "endpoint": {
+        "provider": "Tencent Cloud TokenHub",
+        "region": "Guangzhou / China mainland",
+        "base_url": "https://tokenhub.tencentmaas.com/v1"
+      },
+      "model": "hy3",
+      "protocol": "OpenAI-compatible adapter through @ai-sdk/openai-compatible; exact wire endpoint not asserted",
+      "authentication": {
+        "method": "Credential entered through OpenCode /connect",
+        "secret_source": "OpenCode local credential storage; value and local test configuration not retained"
+      },
+      "first_conversation": {
+        "status": "live_verified",
+        "evidence_paths": [
+          "docs/integrations/assets/opencode/opencode-first-chat-tokenhub.png"
+        ]
+      },
+      "real_task": {
+        "status": "live_verified",
+        "description": "Read README.md and return the requested three-bullet summary without modifying the repository.",
+        "evidence_paths": [
+          "docs/integrations/assets/opencode/opencode-readme-demo-tokenhub.png"
+        ]
+      },
+      "overall_verification_status": "live_verified",
+      "verification_scope": "Existing manual TokenHub adapter execution with visible CLI task completion.",
+      "limitations": [
+        "The exact underlying wire endpoint was not independently captured.",
+        "Local test configuration was intentionally excluded from the repository."
+      ],
+      "unverified_variants": [
+        {
+          "name": "advanced local credential-storage behavior",
+          "status": "unknown"
+        },
+        {
+          "name": "local self-hosted endpoint",
+          "status": "documented_not_executed"
+        },
+        {
+          "name": "Singapore / global TokenHub endpoint",
+          "status": "documented_not_executed"
+        }
+      ],
+      "verification_date": "2026-07-08",
+      "notes": [
+        "The protocol remains labelled as the verified adapter rather than being promoted to an exact Chat Completions wire claim."
+      ]
+    },
+    {
+      "tool_slug": "codebuddy-code",
+      "display_name": "CodeBuddy Code CLI",
+      "category": "CLI coding agent",
+      "guide_path": "docs/integrations/codebuddy-code.md",
+      "version": {
+        "tested_snapshot": "2.117.2",
+        "claim_scope": "exact observed snapshot, not a minimum supported version"
+      },
+      "tested_environment": {
+        "status": "live_verified",
+        "details": [
+          "Windows 11 25H2 (build 26200)",
+          "PowerShell",
+          "Node.js 24.14.1",
+          "npm 11.11.0"
+        ]
+      },
+      "endpoint": {
+        "provider": "Tencent Cloud TokenHub",
+        "region": "Guangzhou / China mainland",
+        "base_url": "https://tokenhub.tencentmaas.com/v1"
+      },
+      "model": "hy3",
+      "protocol": "OpenAI-compatible Chat Completions",
+      "authentication": {
+        "method": "Environment-variable interpolation in the CodeBuddy model profile",
+        "secret_source": "TOKENHUB_API_KEY environment variable; value not retained"
+      },
+      "first_conversation": {
+        "status": "live_verified",
+        "evidence_paths": [
+          "docs/integrations/assets/codebuddy-code/codebuddy-code-first-chat-tokenhub.png"
+        ]
+      },
+      "real_task": {
+        "status": "live_verified",
+        "description": "Use CLI print mode to read README.md and return the requested Model Introduction summary.",
+        "evidence_paths": [
+          "docs/integrations/assets/codebuddy-code/codebuddy-code-readme-demo-tokenhub.png"
+        ]
+      },
+      "overall_verification_status": "live_verified",
+      "verification_scope": "Existing manual TokenHub execution in CLI print mode with visible command output.",
+      "limitations": [
+        "Interactive login mode was not tested.",
+        "The configured supportsToolCall flag was not validated with a dedicated tool-calling task."
+      ],
+      "unverified_variants": [
+        {
+          "name": "interactive login mode",
+          "status": "documented_not_executed"
+        },
+        {
+          "name": "local self-hosted endpoint",
+          "status": "documented_not_executed"
+        },
+        {
+          "name": "Singapore / global TokenHub endpoint",
+          "status": "documented_not_executed"
+        }
+      ],
+      "verification_date": "2026-07-08",
+      "notes": [
+        "The guide's capability flags describe the tested client profile, not general Hy3 capability."
+      ]
+    }
+  ],
+  "shared_unverified_scope": [
+    {
+      "name": "Singapore / global TokenHub endpoint",
+      "status": "documented_not_executed"
+    },
+    {
+      "name": "TokenHub .cn backup domains",
+      "status": "documented_not_executed"
+    },
+    {
+      "name": "per-tool local vLLM or SGLang connectivity",
+      "status": "documented_not_executed"
+    },
+    {
+      "name": "uniform dedicated streaming and general tool-calling tests",
+      "status": "documented_not_executed"
+    }
+  ],
+  "part_b": {
+    "repository_url": "https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer",
+    "repository_branch": "main",
+    "package_version": "1.2.0",
+    "recommended_release_version": "1.2.0",
+    "node_support": ">=18",
+    "core_capability": "Hy3 semantic reasoning over a written specification and a staged or supplied code diff.",
+    "product_forms": [
+      {
+        "name": "report-oriented CLI",
+        "status": "live_verified"
+      },
+      {
+        "name": "interactive loopback Web UI and staged-browser launcher",
+        "status": "live_verified"
+      }
+    ],
+    "modes": [
+      {
+        "name": "Live / Hy3",
+        "status": "live_verified",
+        "scope": "Existing bounded current-engine CLI report and a separate current staged-browser video."
+      },
+      {
+        "name": "Offline / Fake",
+        "status": "offline_verified",
+        "scope": "Six deterministic self-authored fixtures; never evidence of a provider call."
+      }
+    ],
+    "primary_demo": {
+      "status": "live_verified",
+      "url": "https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/assets/browser/codex-hy3-staged-browser-live-demo.mp4",
+      "duration_seconds": 41.567,
+      "sha256": "f172cb06d6bd46aac6dced9134de661210b60ee4621d38550be320404396d634",
+      "relationship_to_live_report": "separate_run"
+    },
+    "live_report": {
+      "status": "live_verified",
+      "tool_version": "1.1.0",
+      "markdown_url": "https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/evidence/live-report-2026-07-22.md",
+      "structured_json_url": "https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/evidence/live-report-2026-07-22.json",
+      "execution_record_url": "https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/evidence/live-verification-2026-07-22.md",
+      "relationship_to_primary_demo": "The report is a separate bounded current-engine CLI Live run, not the browser video's downloaded report."
+    },
+    "tests": {
+      "status": "offline_verified",
+      "command": "npm test",
+      "passed": 241,
+      "total": 241,
+      "network_required": false
+    },
+    "deterministic_evaluation": {
+      "status": "offline_verified",
+      "command": "npm run eval:offline",
+      "fixture_count": 6,
+      "passed": 42,
+      "total": 42,
+      "network_required": false
+    },
+    "evidence_verification": {
+      "status": "offline_verified",
+      "command": "npm run evidence:verify",
+      "network_required": false,
+      "credential_required": false
+    },
+    "ci": {
+      "status": "configuration_only",
+      "workflow_url": "https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/actions/workflows/ci.yml",
+      "operating_systems": [
+        "ubuntu-latest",
+        "windows-latest"
+      ],
+      "node_versions": [
+        "18.x",
+        "24.x"
+      ],
+      "package_smoke": "npm pack --dry-run and npm run package:smoke on ubuntu-latest / Node 24.x",
+      "live_calls": false
+    },
+    "limitations": [
+      "The retained CLI Live report was captured with tool version 1.1.0 and was not re-executed or rewritten for release 1.2.0.",
+      "The primary browser video and current-engine CLI report are separate real runs.",
+      "Local schema and citation checks do not prove semantic correctness.",
+      "Evidence hashes prove byte identity and change detection, not independent provider-call authenticity.",
+      "Automated textual scanning does not inspect PNG pixels, PNG ancillary chunks, MP4 frames, or MP4 container metadata.",
+      "The npm package excludes both repository-only MP4 files and is not the complete repository evidence archive.",
+      "Remote-link availability is outside deterministic CI."
+    ]
+  }
+}

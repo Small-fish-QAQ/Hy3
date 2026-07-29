@@ -1,0 +1,330 @@
+{
+  "schema_version": "1.0.0",
+  "hash_algorithm": "sha256",
+  "classification_vocabulary": [
+    "primary",
+    "secondary",
+    "historical"
+  ],
+  "integrity_scope": {
+    "proves": [
+      "file identity",
+      "missing-file detection",
+      "accidental replacement detection",
+      "byte-for-byte integrity against this inventory"
+    ],
+    "does_not_prove": [
+      "that a screenshot represents a real provider call",
+      "the configured endpoint, authentication, or request body",
+      "the semantic correctness of a visible model response"
+    ]
+  },
+  "inspection": {
+    "path_format": "repository-relative POSIX paths",
+    "file_signature": "PNG signature and IHDR checked with the Node.js standard library",
+    "image_dimensions": "PNG IHDR width and height",
+    "optional_external_inspector": "not required"
+  },
+  "assets": [
+    {
+      "path": "docs/integrations/assets/aider/aider-first-chat-tokenhub.png",
+      "associated_tool": "aider",
+      "evidence_role": "first_conversation",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 92329,
+      "sha256": "571bfd25292cd8f6fb95a322c4295981dd590734503d7961340e232803916aa5",
+      "dimensions": {
+        "width": 1701,
+        "height": 586
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    },
+    {
+      "path": "docs/integrations/assets/aider/aider-readme-demo-tokenhub.png",
+      "associated_tool": "aider",
+      "evidence_role": "real_task",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 127085,
+      "sha256": "d7a3b9717d53db02160d7b47ac59cca4f82ff0fe4d41fb805db3a91d6bb891bc",
+      "dimensions": {
+        "width": 1696,
+        "height": 720
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    },
+    {
+      "path": "docs/integrations/assets/cline/cline-first-chat-tokenhub.png",
+      "associated_tool": "cline",
+      "evidence_role": "first_conversation",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 157855,
+      "sha256": "efcfee5e9ef4fc51f063bb815596ff902f3bae36944f2b5d847043aa21188057",
+      "dimensions": {
+        "width": 526,
+        "height": 1524
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    },
+    {
+      "path": "docs/integrations/assets/cline/cline-readme-demo-tokenhub.png",
+      "associated_tool": "cline",
+      "evidence_role": "real_task",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 217676,
+      "sha256": "4ab0677359db4cbe420f8bf94a004429cbc1d4602ce3e73e9ecc1af6cbd200ac",
+      "dimensions": {
+        "width": 522,
+        "height": 1525
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    },
+    {
+      "path": "docs/integrations/assets/codebuddy-code/codebuddy-code-first-chat-tokenhub.png",
+      "associated_tool": "codebuddy-code",
+      "evidence_role": "first_conversation",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 35011,
+      "sha256": "f448a5c2781cb8044a0cc7e6f71c64355b215aa757e7c706caffa30bd38db188",
+      "dimensions": {
+        "width": 1161,
+        "height": 190
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    },
+    {
+      "path": "docs/integrations/assets/codebuddy-code/codebuddy-code-readme-demo-tokenhub.png",
+      "associated_tool": "codebuddy-code",
+      "evidence_role": "real_task",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 103778,
+      "sha256": "c01331ff6c50f2a6fac20bf293df0ba4ca0776002611c175ba1db068be71be42",
+      "dimensions": {
+        "width": 1171,
+        "height": 538
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    },
+    {
+      "path": "docs/integrations/assets/codex-cli/codex-cli-exec-first-chat-tokenhub.png",
+      "associated_tool": "codex-cli",
+      "evidence_role": "first_conversation_exec",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 36008,
+      "sha256": "68f651eceb225fd206582e82e7531db4f0148f9cade8042f73ddd66a48864b26",
+      "dimensions": {
+        "width": 1722,
+        "height": 121
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    },
+    {
+      "path": "docs/integrations/assets/codex-cli/codex-cli-exec-readme-demo-tokenhub.png",
+      "associated_tool": "codex-cli",
+      "evidence_role": "real_task_exec",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 81691,
+      "sha256": "91404476513960f4799bc1eb4fe340bd43bb8444dd27bf62dc0d8f073a0c242a",
+      "dimensions": {
+        "width": 1723,
+        "height": 333
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    },
+    {
+      "path": "docs/integrations/assets/codex-cli/codex-cli-interactive-first-chat-tokenhub.png",
+      "associated_tool": "codex-cli",
+      "evidence_role": "first_conversation_interactive",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 67543,
+      "sha256": "9bd278d3f311eee4154a485f54271d4d8f526d3a667922da290482a8204c88c6",
+      "dimensions": {
+        "width": 1699,
+        "height": 634
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    },
+    {
+      "path": "docs/integrations/assets/codex-cli/codex-cli-interactive-readme-demo-tokenhub.png",
+      "associated_tool": "codex-cli",
+      "evidence_role": "real_task_interactive",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 147476,
+      "sha256": "260d4d0a542936dbf643ca36fc3ffc0cabe16b33dcf24cfd7925b18f3c1b1103",
+      "dimensions": {
+        "width": 2557,
+        "height": 1120
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    },
+    {
+      "path": "docs/integrations/assets/continue/continue-first-chat-tokenhub.png",
+      "associated_tool": "continue",
+      "evidence_role": "first_conversation",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 87532,
+      "sha256": "d2cb87fa8ee7a3eec32d9f0d366e20032dcd8f66a64dcb04066eea330f905f0a",
+      "dimensions": {
+        "width": 588,
+        "height": 1525
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    },
+    {
+      "path": "docs/integrations/assets/continue/continue-readme-demo-tokenhub.png",
+      "associated_tool": "continue",
+      "evidence_role": "real_task",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 167329,
+      "sha256": "bba83c0b13f84596d4f6c2ed10067e273083752d9f9887874cd180b168d1735e",
+      "dimensions": {
+        "width": 594,
+        "height": 1524
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    },
+    {
+      "path": "docs/integrations/assets/dify/dify-first-chat-tokenhub.png",
+      "associated_tool": "dify",
+      "evidence_role": "first_conversation",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 261670,
+      "sha256": "d75583f3efecbd1ac6bee06b5db505cfbac22760fd40ad7b2c1c530b7f408b49",
+      "dimensions": {
+        "width": 2557,
+        "height": 1378
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    },
+    {
+      "path": "docs/integrations/assets/dify/dify-readme-excerpt-demo-tokenhub.png",
+      "associated_tool": "dify",
+      "evidence_role": "real_task",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 430723,
+      "sha256": "245f4390638821ad12309d61b7a992fd0f7c0b5e0cc1631c4d3a37863162b80c",
+      "dimensions": {
+        "width": 2557,
+        "height": 1389
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    },
+    {
+      "path": "docs/integrations/assets/kilo-code/kilo-code-first-chat-tokenhub.png",
+      "associated_tool": "kilo-code",
+      "evidence_role": "first_conversation",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 113608,
+      "sha256": "0dd80da880b3fb144bacd6a9388e5c675548cd8af0277047a92e287abd352868",
+      "dimensions": {
+        "width": 520,
+        "height": 1525
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    },
+    {
+      "path": "docs/integrations/assets/kilo-code/kilo-code-readme-demo-tokenhub.png",
+      "associated_tool": "kilo-code",
+      "evidence_role": "real_task",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 179150,
+      "sha256": "b168e1db0c941d38806f98104848f0aa884259b95cdefd732ffc1b2ada623ce7",
+      "dimensions": {
+        "width": 517,
+        "height": 1527
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    },
+    {
+      "path": "docs/integrations/assets/opencode/opencode-first-chat-tokenhub.png",
+      "associated_tool": "opencode",
+      "evidence_role": "first_conversation",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 51790,
+      "sha256": "018326c54bfbeeace94e97d6fae431ad9392aefadfaebc3f19d1bd9deebb9490",
+      "dimensions": {
+        "width": 1726,
+        "height": 915
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    },
+    {
+      "path": "docs/integrations/assets/opencode/opencode-readme-demo-tokenhub.png",
+      "associated_tool": "opencode",
+      "evidence_role": "real_task",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 97214,
+      "sha256": "0013c2d6f23a8c5614a964b0a980973ebd068739368e315a7571872e9f488b13",
+      "dimensions": {
+        "width": 1725,
+        "height": 910
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    },
+    {
+      "path": "docs/integrations/assets/roo-code/roo-code-first-chat-tokenhub.png",
+      "associated_tool": "roo-code",
+      "evidence_role": "first_conversation",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 227702,
+      "sha256": "5ecfb8e24894366916cc9e1df7613b0b4434bb50ad55697057dd17d411bd12b3",
+      "dimensions": {
+        "width": 586,
+        "height": 1525
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    },
+    {
+      "path": "docs/integrations/assets/roo-code/roo-code-readme-demo-tokenhub.png",
+      "associated_tool": "roo-code",
+      "evidence_role": "real_task",
+      "status": "live_verified",
+      "file_type": "png",
+      "size_bytes": 245122,
+      "sha256": "5288146e29d6bd51c036a20363f370b1367b8b1565c835aa8e1387590edfd16a",
+      "dimensions": {
+        "width": 591,
+        "height": 1524
+      },
+      "duration_seconds": null,
+      "classification": "primary"
+    }
+  ]
+}

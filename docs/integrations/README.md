@@ -1,5 +1,20 @@
 # Hy3 integrations
 
+## Fast Reviewer Path
+
+1. Open the one-page [Issue #2 acceptance matrix](acceptance-matrix.md) for the exact requirement mapping, nine-tool table, evidence links, and verified boundaries.
+2. Inspect the machine-readable [evidence manifest](evidence-manifest.json) and actual-byte [media integrity inventory](media-integrity.json).
+3. From the Hy3 checkout, run the offline, credential-free verifier:
+
+   ```powershell
+   node docs/integrations/verify_evidence.js
+   ```
+
+4. For Part B, open the [independent repository](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer), watch the [41.567-second Live / Hy3 demo](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/assets/browser/codex-hy3-staged-browser-live-demo.mp4), and inspect the separate current-engine Live [Markdown report](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/evidence/live-report-2026-07-22.md) and [structured JSON](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/evidence/live-report-2026-07-22.json).
+5. Review the Part B [tests](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/tree/main/test) and [CI definition](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/actions/workflows/ci.yml): local verification passes **241/241 Node tests** and **42/42 deterministic offline evaluation checks across six self-authored fixtures**; CI is green on Ubuntu and Windows with Node.js 18.x and 24.x, includes repository evidence verification, and has one Ubuntu/Node 24 job that runs both `npm pack --dry-run` and the extracted packed-CLI package smoke. CI makes no Live provider call.
+
+Detailed guides remain the authority for installation, configuration, task steps, troubleshooting, and tool-specific limitations. Neither default evidence verifier requires internet access, a TokenHub credential, or a provider request.
+
 Nine task-complete guides show how to use Hy3 from mainstream AI clients. Start with the tool you already use; shared TokenHub region, authentication, and safety details live in one place.
 
 - [TokenHub cloud setup](tokenhub.md): region-matched endpoint, model access, authentication, model-list preflight, smoke test, and safety.
@@ -34,7 +49,8 @@ The standalone reviewer supports both report-oriented CLI use and a loopback-onl
 Codex or another developer tool may modify code, but the human still chooses and stages the intended diff. Hy3 performs the semantic review; local code validates the structured result and every cited specification and diff location; Markdown and JSON reports include input hashes and execution provenance. The reviewer does not edit code, stage files, commit, reset, or otherwise mutate Git state.
 
 - Repository: [hy3-tokenhub-spec-diff-reviewer](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer)
-- Current 41-second Live / Hy3 staged-browser demo: [codex-hy3-staged-browser-live-demo.mp4](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/assets/browser/codex-hy3-staged-browser-live-demo.mp4)
+- Current GitHub Release: [v1.2.0 — Auditable evidence and reviewer workflow](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/releases/tag/v1.2.0)
+- Current 41.567-second Live / Hy3 staged-browser demo: [codex-hy3-staged-browser-live-demo.mp4](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/assets/browser/codex-hy3-staged-browser-live-demo.mp4)
 - Current 1440×900 browser preview: [review-console-1440x900.png](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/assets/browser/review-console-1440x900.png)
 - One-time local setup in the reviewer checkout: `npm ci`, then `npm link`
 - Recommended staged-browser command, run from the repository being reviewed: `hy3-review-staged --spec examples/spec.md`
@@ -43,9 +59,18 @@ Codex or another developer tool may modify code, but the human still chooses and
 - Live preflight: `npm run check`
 - Codex workflow guide: [docs/CODEX_WORKFLOW.md](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/CODEX_WORKFLOW.md)
 - Sanitized 2026-07-22 live verification record: [docs/evidence/live-verification-2026-07-22.md](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/evidence/live-verification-2026-07-22.md)
+- Retained CLI Live report, from a separate bounded run: [Markdown report](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/evidence/live-report-2026-07-22.md) · [structured JSON report](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/evidence/live-report-2026-07-22.json)
+- Part B evidence verification: `npm run evidence:verify` · [evidence manifest](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/evidence/evidence-manifest.json) · [media-integrity inventory](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/main/docs/evidence/media-integrity.json)
+- Current successful CI: [green Ubuntu/Windows and Node.js 18.x/24.x run](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/actions/runs/30454249622)
 - Historical 31-second CLI-core recording, earlier-revision evidence only: [hy3-spec-to-diff-demo.mp4](https://github.com/Small-fish-QAQ/hy3-tokenhub-spec-diff-reviewer/blob/fecbbc49a4e3c21f2fe78b9ab3bcc9ee24ec156f/docs/assets/hy3-spec-to-diff-demo.mp4)
 
-The current video, approximately 42 seconds long, demonstrates the workflow on a staged Git change: automatically populated browser inputs, a Live / Hy3 semantic review returning a NOT READY verdict, requirement-level coverage, verified specification and diff citations, multiple implementation and test findings including missing boundary and invalid-input tests, Live / Hy3 execution provenance with local schema validation and local evidence validation passed, and Markdown and JSON export controls. Live model output can vary between runs, so coverage counts, finding counts, and severity mix are not fixed claims.
+The current 41.567-second video demonstrates the workflow on a staged Git change: automatically populated browser inputs, a Live / Hy3 semantic review returning a NOT READY verdict, requirement-level coverage, verified specification and diff citations, multiple implementation and test findings including missing boundary and invalid-input tests, Live / Hy3 execution provenance with local schema validation and local evidence validation passed, and Markdown and JSON export controls. Live model output can vary between runs, so coverage counts, finding counts, and severity mix are not fixed claims.
+
+Release verification passes `241/241` Node tests and `42/42` deterministic offline evaluation checks across six self-authored fixtures. CI is green on Ubuntu and Windows with Node.js 18.x and 24.x, and the repository evidence verifier runs offline without credentials at scope `repository_checkout`.
+
+The retained CLI Live report was captured with tool version `1.1.0`. It is a separate run from the staged-browser video, and v1.2.0 evidence hardening did not re-execute or rewrite that retained Live run.
+
+The npm tarball is a focused CLI/runtime package and intentionally excludes both repository-only MP4 files. Evidence hashes prove byte identity and change detection, not independent provider-call authenticity. Automated textual scanning does not inspect PNG pixels or MP4 frames; manual visual and metadata review remains a separate boundary.
 
 The historical 31-second MP4 remains real TokenHub evidence, but it shows an earlier CLI revision recorded before the staged-browser workflow, the fixed structured schema, local evidence verification, and the current browser report and export workflow. It must not be presented as the current product demo.
 
