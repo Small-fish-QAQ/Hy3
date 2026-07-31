@@ -9,6 +9,8 @@ Hy3 Study Clinic is an interactive web application that turns course materials i
 - **Repository:** [Small-fish-QAQ/hy3-study-clinic](https://github.com/Small-fish-QAQ/hy3-study-clinic)
 - **Full README** (product detail, architecture, setup, limitations): [README.md](https://github.com/Small-fish-QAQ/hy3-study-clinic/blob/main/README.md)
 - **Final demo video** (1:53, silent MP4, under the two-minute limit): [hy3-study-clinic-demo.mp4](https://github.com/Small-fish-QAQ/hy3-study-clinic/blob/main/docs/assets/hy3-study-clinic-demo.mp4)
+- **Real Hy3 online verification** (sanitized, commit-pinned): [hy3-online-verification.md](https://github.com/Small-fish-QAQ/hy3-study-clinic/blob/main/docs/evidence/hy3-online-verification.md)
+- **Final tag:** [`issue-4-final`](https://github.com/Small-fish-QAQ/hy3-study-clinic/releases/tag/issue-4-final)
 - **License:** [Apache-2.0](https://github.com/Small-fish-QAQ/hy3-study-clinic/blob/main/LICENSE)
 
 [![Personal learning graph with a selected concept, typed relationships, and locally validated source evidence](https://raw.githubusercontent.com/Small-fish-QAQ/hy3-study-clinic/main/docs/assets/02-learning-graph-evidence.png)](https://github.com/Small-fish-QAQ/hy3-study-clinic/blob/main/docs/assets/hy3-study-clinic-demo.mp4)
@@ -96,6 +98,10 @@ The final 1:53 video demonstrates, in one continuous sequence:
 
 Annotated screenshots for every stage are in the repository's [evidence section](https://github.com/Small-fish-QAQ/hy3-study-clinic/blob/main/README.md#evidence), including [PDF page-level provenance](https://github.com/Small-fish-QAQ/hy3-study-clinic/blob/main/docs/assets/01-pdf-page-evidence.png), [graph-grounded tutoring](https://github.com/Small-fish-QAQ/hy3-study-clinic/blob/main/docs/assets/03-hy3-graph-tutoring.png), and [Hy3 rubric grading](https://github.com/Small-fish-QAQ/hy3-study-clinic/blob/main/docs/assets/05-hy3-rubric-grading.png).
 
+### Real Hy3 online verification
+
+Beyond the demo, the repository publishes a sanitized, machine-checked record — [hy3-online-verification.md](https://github.com/Small-fish-QAQ/hy3-study-clinic/blob/main/docs/evidence/hy3-online-verification.md) (+ [JSON](https://github.com/Small-fish-QAQ/hy3-study-clinic/blob/main/docs/evidence/hy3-online-verification.json)) — proving the submitted source version completed the full real-provider evaluation online: pinned Git commit on a clean worktree, provider `hy3`, model and endpoint hostname, 6/6 operations passed (grounded concept extraction, alignment and grading agreement with hand-authored labels, truly cross-document assessment items, Tutor first-step validity), request and bounded-repair counts, and latency. The evaluation refuses to run without real credentials (no fake fallback is possible), the exporter refuses failed, incomplete, or dirty-worktree runs and scans for credentials and local paths, and a CI-run regression test keeps the committed record consistent and secret-free.
+
 ## CodeBuddy collaboration
 
 CodeBuddy Code, connected to Hy3 through Tencent Cloud TokenHub, performed one focused accessibility and regression review of the source-evidence disclosure. Its accepted contribution is limited to the `SourceEvidencePanel` tests:
@@ -108,18 +114,20 @@ CodeBuddy confirmed that the production component already used native button sem
 
 ## Verification
 
-Verified locally at independent-repository `main` commit `2637148`:
+Verified locally at independent-repository `main` commit `c67ac6d` (tagged [`issue-4-final`](https://github.com/Small-fish-QAQ/hy3-study-clinic/releases/tag/issue-4-final)); the same commit is green in [CI run `30604963718`](https://github.com/Small-fish-QAQ/hy3-study-clinic/actions/runs/30604963718) (build + lint + full test suite on Ubuntu Node 20/24 and Windows Node 24):
 
 | Workspace | Test files | Tests |
 | --- | ---: | ---: |
 | shared | 5 | 75 |
-| server | 36 | 404 |
+| server | 38 | 422 |
 | web | 16 | 274 |
-| **Total** | **57** | **753** |
+| **Total** | **59** | **771** |
 
 - Production build: passed
 - ESLint: passed
 - Prettier: passed
+- Offline structural evaluation (`eval:fake`): 31/31
+- Real-provider online verification: 6/6 operations, published sanitized record (see above)
 - Final demo: 1:53, under the two-minute limit
 
 ## Issue #4 requirement checklist
@@ -139,6 +147,7 @@ Verified locally at independent-repository `main` commit `2637148`:
 - Exact-quote verification proves that cited text exists at the recorded source location; it does not by itself guarantee the semantic truth of model explanations, which the UI labels as model-proposed.
 - Mastery is a deterministic weighted heuristic, not a scientific cognitive diagnosis; misconception records are hypotheses that require a discriminating question to confirm.
 - The fake provider makes the complete workflow repeatable offline, but generated content and ordering may vary between runs; only local scoring and state rules are deterministic.
+- The published online-verification record uses deliberately small fixtures and hand-authored labels — it proves the online integration works end to end at the pinned commit; it is not a benchmark.
 - Strict local validation can reject schema-valid model output and require regeneration, so generated graphs and quizzes can contain fewer items than requested.
 - A Tutor run that exhausts its explicit budgets fails with zero state changes, by design.
 
